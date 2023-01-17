@@ -1,0 +1,30 @@
+module.exports = {
+  types: [
+    { value: 'feat', name: '✨  feat: Add new functionality' },
+    { value: 'fix', name: '🐛 fix: Fix bugs' },
+    { value: 'perf', name: '🚀 perf: A code change that improves performance' },
+    { value: 'refactor', name: '🪛 refactor: Edit the code without correcting bugs or adding new features' },
+    { value: 'docs', name: '📚 docs: Updating docs' },
+    { value: 'ci', name: '⚙️ ci: Configure CI and working with scripts' },
+    { value: 'chore', name: '♻️ chore: Other changes that don\'t modify src or test files' },
+    { value: 'revert', name: '🗑 revert: Rollback to previous commits' },
+  ],
+  scopes: [
+    { name: 'icons' },
+    { name: 'scripts' },
+    { name: 'documentation' },
+    { name: 'no-release' },
+  ],
+  messages: {
+    type: 'What changes do you make?',
+    scope: 'Select the SCOPE, which you changed',
+    customScope: 'Set custom SCOPE',
+    subject: 'Write a short description:',
+    body: 'Write detailed description (optional). Use "|" for a new line:',
+    footer: 'Meta data (tickets, links, etc). Example: TICKET-000:',
+    confirmCommit: 'Are you satisfied with the resulting commit?',
+  },
+  allowCustomScopes: true,
+  footerPrefix: 'META:',
+  subjectLimit: 72,
+};

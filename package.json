@@ -1,0 +1,100 @@
+{
+  "name": "@oyelsv-code/icons",
+  "version": "1.0.0",
+  "description": "SVG icons library as React components",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run prebuild:icons && rollup -c",
+    "clean": "rimraf src && rimraf ./dist",
+    "prebuild:icons": "npm run svgo && npm run svgr",
+    "svgo": "svgo --config ./svgo.config.js -f ./static -o ./static",
+    "svgr": "svgr --typescript --title-prop --no-dimensions -d src/ -- ./static",
+    "storybook": "npm run clean && npm run prebuild:icons && start-storybook -p 6006",
+    "build-storybook": "npm run clean && npm run prebuild:icons && build-storybook -o docs-build",
+    "commit": "cz-customizable",
+    "lint": "eslint --fix --max-warnings 5 --ext .ts,.tsx ./",
+    "lint-staged": "lint-staged -v -c .config/.lintstagedrc.js",
+    "test:commit": "commitlint -g .config/commitlint.config.js",
+    "test:latest-commit": "npm run test:commit -- --verbose --from=$(git rev-parse HEAD~1) --to=$(git rev-parse HEAD)"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -g .config/commitlint.config.js --edit $1",
+      "pre-commit": "npm run lint-staged",
+      "post-commit": "npm run test:latest-commit",
+      "pre-push": "npm run test:latest-commit --"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oyelsv-code/icons.git"
+  },
+  "keywords": [
+    "icons",
+    "svg",
+    "react",
+    "svgo",
+    "svgr"
+  ],
+  "author": "oyelsv-code",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oyelsv-code/icons/issues"
+  },
+  "sideEffects": false,
+  "homepage": "https://github.com/oyelsv-code/icons#readme",
+  "peerDependencies": {
+    "react": ">= 18.0",
+    "react-dom": ">= 18.0"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-angular": "^12.1.4",
+    "cz-customizable": "6.3.0",
+    "husky": "1.0.0-rc.13",
+    "lint-staged": "11.0.0",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/builder-webpack4": "^6.5.15",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.1",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@storybook/manager-webpack4": "^6.5.15",
+    "@storybook/react": "^6.5.15",
+    "@storybook/testing-library": "0.0.13",
+    "@svgr/cli": "^6.2.1",
+    "@types/react": "^18.0.26",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "babel-loader": "^8.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-storybook": "^0.5.12",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "svgo": "^2.8.0",
+    "typescript": "^4.9.4",
+    "rollup": "^2.61.1",
+    "rollup-plugin-filesize": "^9.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4"
+  }
+}
